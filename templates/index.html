@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout & Meal Planner</title>
+    <script>
+        function showCustomGoalInput() {
+            var goalSelect = document.getElementById("workout_goal");
+            var customGoalDiv = document.getElementById("custom_goal_div");
+            if (goalSelect.value === "Other") {
+                customGoalDiv.style.display = "block";
+            } else {
+                customGoalDiv.style.display = "none";
+            }
+        }
+    </script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: linear-gradient(135deg, #4CAF50, #f4a261); }
+        .container {
+            background: white; padding: 20px; border-radius: 10px; width: 50%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); text-align: left;
+        }
+        h2 { text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { font-weight: bold; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+        button {
+            background-color: #28a745; color: white; padding: 12px; border: none;
+            width: 100%; border-radius: 5px; font-size: 18px;
+        }
+        button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Workout & Meal Planner</h2>
+    <form action="/recommend" method="post">
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="number" name="age" required>
+        </div>
+        <div class="form-group">
+            <label>Gender:</label>
+            <select name="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Weight (kg):</label>
+            <input type="number" name="weight" required>
+        </div>
+        <div class="form-group">
+            <label>Height (cm):</label>
+            <input type="number" name="height" required>
+        </div>
+        <div class="form-group">
+            <label>Workout Goal:</label>
+            <select name="workout_goal" id="workout_goal" required onchange="showCustomGoalInput()">
+                <option value="" disabled selected>Select Goal</option>
+                <option value="Strength Training">Strength Training</option>
+                <option value="Weight Loss">Weight Loss</option>
+                <option value="Weight Gain">Weight Gain</option>
+                <option value="Endurance Training">Endurance Training</option>
+                <option value="Flexibility and Mobility">Flexibility and Mobility</option>
+                <option value="Cardiovascular Training">Cardiovascular Training</option>
+                <option value="Functional and Core Training">Functional and Core Training</option>
+                <option value="Recovery and Mindfulness">Recovery and Mindfulness</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="form-group" id="custom_goal_div" style="display: none;">
+            <label>Custom Goal:</label>
+            <input type="text" name="custom_goal">
+        </div>
+        <div class="form-group">
+            <label>Diet Type:</label>
+            <select name="diet_type" required>
+                <option value="" disabled selected>Select Diet Type</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Non-Vegetarian">Non-Vegetarian</option>
+                <option value="Vegan">Vegan</option>
+            </select>
+        </div>
+        <button type="submit">Get Plan</button>
+    </form>
+</div>
+
+</body>
+</html>
